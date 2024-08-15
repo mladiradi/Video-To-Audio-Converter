@@ -1,21 +1,22 @@
+
 import subprocess
 import os
 
 
 def download_audio(url, filename_mp3):
-    # Определяне на пътя до работния плот
+    # Determine the path to the Desktop
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
 
-    # Определяне на пълния път на изходния файл
+    # Determine the full path for the output file
     output_file = os.path.join(desktop_path, f"{filename_mp3}.mp3")
 
-    # Премахване на стария файл, ако съществува
+    # Remove the old file if it exists
     if os.path.exists(output_file):
         os.remove(output_file)
 
     command = [
         "yt-dlp",
-        "-v",  # Подробен режим за повече детайли
+        "-v",  # Verbose mode for more details
         "-f", "bestaudio",
         "--output", output_file,
         url
@@ -23,18 +24,18 @@ def download_audio(url, filename_mp3):
 
     result = subprocess.run(command, capture_output=True, text=True)
 
-    # Печата изхода и съобщенията за грешки
+    # Print stdout and stderr
     print("stdout:", result.stdout)
     print("stderr:", result.stderr)
 
-    # Проверка дали файлът е изтеглен
+    # Check if the file has been downloaded
     if os.path.exists(output_file):
-        print(f"Изтеглен файл: {output_file}")
+        print(f"Downloaded file: {output_file}")
     else:
-        print("Неуспешно изтегляне на файл.")
+        print("Failed to download file.")
 
 
 if __name__ == "__main__":
-    video_url = input("Въведете URL на YouTube видео: ")
-    filename = input("Въведете име на изходния файл (без разширение): ")
+    video_url = input("Enter YouTube video URL: ")
+    filename = input("Enter the output file name (without extension): ")
     download_audio(video_url, filename)
