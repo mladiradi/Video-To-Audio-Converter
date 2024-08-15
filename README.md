@@ -29,7 +29,7 @@ Example Execution
 
 mathematica
 
-Enter YouTube video URL: https://www.youtube.com/watch?v=example
+Enter YouTube video URL: https://www.youtube.com/
 Enter the output file name (without extension): my_audio_file
 
 The script will download the audio from the specified video and save it on your Desktop as my_audio_file.mp3. If a file with that name already exists on the Desktop, it will be replaced.
